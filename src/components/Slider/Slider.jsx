@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import s from './Slider.module.scss';
 
 
-export const Slider = () => {
+export const Slider = ({text}) => {
   const images = [
     '/images/center-square-wroclaw.jpg',
     '/images/city-houses-reykjavik.jpg',
@@ -22,6 +22,10 @@ export const Slider = () => {
   return (
     <div className={s.sliderStyle}>
       <img src={images[currentIndex]} alt="Slider image" />
+      <div className={s.headerText}>
+        <h1>{text}</h1>
+        <span></span>
+      </div>
     </div>
   );
 };

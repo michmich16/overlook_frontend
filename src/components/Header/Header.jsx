@@ -5,7 +5,7 @@ import s from "./Header.module.scss";
 
 export const Header = () => {
     const [burgerOpen, setBurgerOpen] = useState(false);
-    const logo = './hotel-overlook-logo.png'
+    const logo = './images/hotel-overlook-logo.png'
     const toggleBurgerMenu = () => {
         setBurgerOpen(!burgerOpen);
     };

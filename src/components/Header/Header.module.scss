@@ -76,6 +76,7 @@ nav {
             left: 0;
             width: 100%;
             background-color: black;
+            z-index: 9999;
             ul {
                 display: flex;
                 flex-direction: column;

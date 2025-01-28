@@ -1,0 +1,14 @@
+.inputStyling {
+    height: 42px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: rgb(242, 242, 242);
+    padding-left: 8px;
+    transition: all 0.3s ease;
+  
+    &:hover {
+      background-color: rgb(222, 222, 222);
+      border: solid 1px rgba(40, 40, 40, 0.2);
+    }
+  }

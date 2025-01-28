@@ -1,7 +1,9 @@
+import { FilterBar } from "../components/FilterBar/FilterBar"
+
 export const InfoPage = () =>{
     return(
         <>
-        InfoPage
+        <FilterBar filters={["Danmark", "Sverige", "Norge", "Finland", "Island", "Tyskland", "Polen"]}/>
         </>
     )
 }
