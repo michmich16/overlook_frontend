@@ -56,7 +56,7 @@ nav {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .headerStyle {
         justify-content: center;
     }
@@ -90,6 +90,9 @@ nav {
     }
 
     .burgerMenu {
-        display: block;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
 }
