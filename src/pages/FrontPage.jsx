@@ -19,7 +19,7 @@ export const FrontPage = () => {
     const { data: presidentalRoomsData, isLoading: isLoadingPresidentalRooms, error: errorPresidentalRooms } = useGet(`http://localhost:4000/destinations/tyskland/berlin/overlook-berlin-potsdamer-platz/presidental-suite`);
     return (
         <>
-            <Slider text={"VELKOMMEN TIL HOTEL OVERLOOK ONLINE"}/>
+            <Slider text={"VELKOMMEN TIL HOTEL OVERLOOK ONLINE"} height={"600px"}/>
             {/* Section for News */}
             <MarginContainer >
                 <SectionTitle title="Sidste nyt" />

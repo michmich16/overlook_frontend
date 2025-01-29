@@ -1,19 +1,17 @@
-import s from "./FilterBar.module.scss";
+import style from "./FilterBar.module.scss";
 
-export const FilterBar = ({ filters, onFilterSelect }) => {
+export const FilterBar = ({ filters, onFilterChange }) => {
     return (
-        <div className={s.filterBarStyle}>
-            <ul>
-                {filters.map((filter) => (
-                    <li
-                        key={filter}
-                        onClick={() => onFilterSelect(filter)}
-                        className={s.filterItem}
-                    >
-                        {filter}
-                    </li>
-                ))}
-            </ul>
+        <div className={style.filterBar}>
+            {filters.map((filter) => (
+                <button
+                    key={filter}
+                    className={style.filterButton}
+                    onClick={() => onFilterChange(filter)} // Call the handler with the selected filter
+                >
+                    {filter}
+                </button>
+            ))}
         </div>
     );
 };

@@ -6,6 +6,7 @@ import { ReservationPage } from './pages/ReservationPage'
 import { RoomPage } from './pages/RoomPage'
 import { LoginPage } from './pages/LoginPage'
 import { NoPage } from './pages/NoPage'
+import { SignupPage } from './pages/SignupPage'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <Route path={"/reservation"} element={<ReservationPage />} />
             <Route path={"/rooms"} element={<RoomPage />} />
             <Route path={"/login"} element={<LoginPage />} />
+            <Route path={"/signup"} element={<SignupPage />} />
             <Route path={"/*"} element={<NoPage />} />
           </Route>
         </Routes>
