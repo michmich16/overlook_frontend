@@ -1,5 +1,5 @@
 import { FilterBar } from "../components/FilterBar/FilterBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useGet } from "../hooks/useGet";
 import { Slider } from "../components/Slider/Slider";
 import { SectionTitle } from "../components/SectionTitle/SectionTitle";
@@ -8,8 +8,32 @@ import { GridContainer } from "../components/GridContainer/GridContainer";
 import { NewsCard } from "../components/NewsCard/NewsCard";
 
 export const InfoPage = () => {
+    const filters = ["danmark", "sverige", "norge", "finland", "island", "tyskland", "polen"];
     const [selectedCountry, setSelectedCountry] = useState("danmark");
-    const { data, isLoading, error } = useGet(`http://localhost:4000/destinations/${selectedCountry}`);
+    const [countriesData, setCountriesData] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchAllCountries = async () => {
+            try {
+                const allData = {};
+                for (const country of filters) {
+                    const response = await fetch(`http://localhost:4000/destinations/${country}`);
+                    const data = await response.json();
+                    allData[country] = data;
+                }
+                setCountriesData(allData);
+            } catch (err) {
+                setError(err.message || "Error loading destinations.");
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchAllCountries();
+    }, []);
+
     const handleFilterChange = (country) => {
         setSelectedCountry(country);
     };
@@ -19,23 +43,22 @@ export const InfoPage = () => {
     }
 
     if (error) {
-        return <p>Error loading destinations for {selectedCountry}.</p>;
+        return <p>{error}</p>;
     }
+
+    const selectedData = countriesData[selectedCountry];
 
     return (
         <>
             <Slider text="HOTELLER & DESTINATIONER" height="400px" />
-            <FilterBar
-                filters={["danmark", "sverige", "norge", "finland", "island", "tyskland", "polen"]}
-                onFilterChange={handleFilterChange}
-            />
+            <FilterBar filters={filters} onFilterChange={handleFilterChange} />
 
             <MarginContainer>
-                {data && (
-                    <SectionTitle title={`Vores hotel i ${data.name}`} />
+                {selectedData && (
+                    <SectionTitle title={`Vores hotel i ${selectedData.name}`} />
                 )}
                 <GridContainer columns="1fr 1fr 1fr" gap="2rem">
-                    {data?.cities.map((city) => (
+                    {selectedData?.cities.map((city) => (
                         <NewsCard
                             key={city.city_id}
                             title={city.name}

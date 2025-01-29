@@ -8,18 +8,18 @@ import { NavLink } from 'react-router-dom';
 import s from '../styles/LoginPage.module.scss'
 
 export const LoginPage = () => {
-    const [username, setUsername] = useState();
+    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [error, setError] = useState();
     const [loginMessage, setLoginMessage] = useState();
 
     const { setUserData } = useContext(UserContext);
-    console.log(username, password);
+    console.log(email, password);
 
     function submitData() {
 
         const body = new URLSearchParams();
-        body.append(`username`, username);
+        body.append('username', email);
         body.append('password', password);
 
         const options = {
@@ -32,7 +32,7 @@ export const LoginPage = () => {
             .then((data) => {
                 if (data.access_token) {
                     setUserData(data);
-                    setLoginMessage(`Du er nu logget ind`);
+                    setLoginMessage('Du er nu logget ind');
                     console.log(data);
 
                 } else {
@@ -42,20 +42,17 @@ export const LoginPage = () => {
             .catch((err) => setError(err));
 
     }
-    function cancelData() {
-
-    }
     return (
         <>
             <GridContainer columns="3fr 1fr">
                 <MarginContainer border="1px solid grey" margin="1rem" height="70vh">
                     <form className={s.formStyle}>
                         <InputField
-                            type="username"
+                            type="email"
                             placeholder="Brugernavn"
                             name="Username"
                             id="usernameField"
-                            action={setUsername}
+                            action={setEmail}
                         />
                         <InputField
                             type="password"
@@ -67,6 +64,7 @@ export const LoginPage = () => {
                     </form>
                     <div className={s.buttonContainer}>
                         <button className={s.loginBtnStyle} onClick={() => submitData()}>Login</button>
+                        {loginMessage && <p>{loginMessage}</p>} 
                         <NavLink to="/signup" className={s.navLinkStyle}>
                             <button className={s.loginBtnStyle}>Signup</button>
                         </NavLink>
