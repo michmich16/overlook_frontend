@@ -1,16 +1,26 @@
-import s from './Select.module.scss'
+import s from './Select.module.scss';
 
-export const Select = ({ options = [], placeholder }) => {
+export const Select = ({ options = [], placeholder, action }) => {
     return (
-        <select id="custom-select">
+        <select
+            id="custom-select"
+            className={s.select}
+            onChange={(e) => action(e.target.value)}
+        >
             <option value="" disabled selected>
                 {placeholder}
             </option>
-            {options.map((option, index) => (
-                <option key={index} value={option.toLowerCase()}>
-                    {option}
-                </option>
-            ))}
+            {options.map((option, index) =>
+                typeof option === 'object' ? (
+                    <option key={index} value={option.value}>
+                        {option.label}
+                    </option>
+                ) : (
+                    <option key={index} value={option}>
+                        {option}
+                    </option>
+                )
+            )}
         </select>
     );
 };

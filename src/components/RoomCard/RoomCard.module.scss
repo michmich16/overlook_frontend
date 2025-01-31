@@ -1,0 +1,54 @@
+.roomCardStyle {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    background-color: white;
+    margin: 1rem;
+
+    .roomImgContainer {
+        display: flex;
+        padding: 1rem;
+
+        img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+        }
+    }
+
+    .roomInfoContainer {
+        display: flex;
+        flex-direction: column;
+        padding: 0 10px;
+        width: 100%;
+        .roomInfoBox{
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            width: 90%;
+            h3 {
+                padding: 15px 0;
+            }
+    
+            p {
+                padding: 10px 0;
+            }
+        }
+     
+        .roomPriceBox {
+            display: flex;
+            justify-content: end;
+            width: 90%;
+            p{
+                padding: 10px 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 1030px) {
+    .roomCardStyle {
+        display: flex;
+        flex-direction: column;
+    }
+}
